@@ -1,0 +1,85 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-parking-spot-heading" data-cy="ParkingSpotCreateUpdateHeading">Create or edit a Parking Spot</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_number">Number</label>
+          <input type="number" class="form-control" name="number" id="field_number" data-cy="number" formControlName="number" />
+          <div *ngIf="editForm.get('number')!.invalid && (editForm.get('number')!.dirty || editForm.get('number')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('number')?.errors?.required"> This field is required. </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('number')?.errors?.number"> This field should be a number. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_status">Status</label>
+          <select class="form-control" name="status" formControlName="status" id="field_status" data-cy="status">
+            <option [ngValue]="null"></option>
+            <option *ngFor="let spotStatus of spotStatusValues" [value]="spotStatus">spotStatus</option>
+          </select>
+          <div *ngIf="editForm.get('status')!.invalid && (editForm.get('status')!.dirty || editForm.get('status')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('status')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_spotType">Spot Type</label>
+          <select class="form-control" name="spotType" formControlName="spotType" id="field_spotType" data-cy="spotType">
+            <option [ngValue]="null"></option>
+            <option *ngFor="let spotType of spotTypeValues" [value]="spotType">spotType</option>
+          </select>
+          <div *ngIf="editForm.get('spotType')!.invalid && (editForm.get('spotType')!.dirty || editForm.get('spotType')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('spotType')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_parkingLot">Parking Lot</label>
+          <select
+            class="form-control"
+            id="field_parkingLot"
+            data-cy="parkingLot"
+            name="parkingLot"
+            formControlName="parkingLot"
+            [compareWith]="compareParkingLot"
+          >
+            <option *ngIf="editForm.get(['parkingLot'])!.value == null" [ngValue]="null" selected></option>
+            <option [ngValue]="parkingLotOption" *ngFor="let parkingLotOption of parkingLotsSharedCollection">
+              {{ parkingLotOption.id }}
+            </option>
+          </select>
+        </div>
+        <div
+          *ngIf="editForm.get(['parkingLot'])!.invalid && (editForm.get(['parkingLot'])!.dirty || editForm.get(['parkingLot'])!.touched)"
+        >
+          <small class="form-text text-danger" *ngIf="editForm.get(['parkingLot'])?.errors?.required"> This field is required. </small>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

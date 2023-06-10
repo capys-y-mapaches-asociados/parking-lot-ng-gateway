@@ -1,0 +1,41 @@
+{
+  "changelogDate": "20230610022110",
+  "clientRootFolder": "ParkingLot",
+  "databaseType": "sql",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "number",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "SpotStatus",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "OCCUPIED,AVAILABLE,RESERVED,OUT_OF_SERVICE"
+    },
+    {
+      "fieldName": "spotType",
+      "fieldType": "SpotType",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "REGULAR,DISABLED,MATERNITY,LOADING,EMERGENCY"
+    }
+  ],
+  "jpaMetamodelFiltering": false,
+  "microserviceName": "ParkingLot",
+  "microservicePath": "../parking-lot",
+  "name": "ParkingSpot",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "parkingLot",
+      "relationshipName": "parkingLot",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": ["required"]
+    }
+  ],
+  "service": "serviceImpl"
+}

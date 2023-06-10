@@ -1,0 +1,11 @@
+export enum SpotType {
+  REGULAR = 'REGULAR',
+
+  DISABLED = 'DISABLED',
+
+  MATERNITY = 'MATERNITY',
+
+  LOADING = 'LOADING',
+
+  EMERGENCY = 'EMERGENCY',
+}

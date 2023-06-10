@@ -1,0 +1,46 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="parkingSpot">
+      <h2 data-cy="parkingSpotDetailsHeading"><span>Parking Spot</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ parkingSpot.id }}</span>
+        </dd>
+        <dt><span>Number</span></dt>
+        <dd>
+          <span>{{ parkingSpot.number }}</span>
+        </dd>
+        <dt><span>Status</span></dt>
+        <dd>
+          <span>{{ parkingSpot.status }}</span>
+        </dd>
+        <dt><span>Spot Type</span></dt>
+        <dd>
+          <span>{{ parkingSpot.spotType }}</span>
+        </dd>
+        <dt><span>Parking Lot</span></dt>
+        <dd>
+          <div *ngIf="parkingSpot.parkingLot">
+            <a [routerLink]="['/parking-lot', parkingSpot.parkingLot.id, 'view']">{{ parkingSpot.parkingLot.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/parking-spot', parkingSpot.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

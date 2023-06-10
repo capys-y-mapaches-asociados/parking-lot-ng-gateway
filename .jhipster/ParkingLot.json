@@ -28,6 +28,13 @@
   "name": "ParkingLot",
   "pagination": "no",
   "readOnly": false,
-  "relationships": [],
+  "relationships": [
+    {
+      "otherEntityName": "parkingSpot",
+      "otherEntityRelationshipName": "parkingLot",
+      "relationshipName": "parkingSpots",
+      "relationshipType": "one-to-many"
+    }
+  ],
   "service": "serviceImpl"
 }
