@@ -1,0 +1,33 @@
+{
+  "changelogDate": "20230610021519",
+  "clientRootFolder": "ParkingLot",
+  "databaseType": "sql",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "location",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "minlength"],
+      "fieldValidateRulesMinlength": "12"
+    },
+    {
+      "fieldName": "capacity",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required", "max"],
+      "fieldValidateRulesMax": "13000"
+    }
+  ],
+  "jpaMetamodelFiltering": false,
+  "microserviceName": "ParkingLot",
+  "microservicePath": "../parking-lot",
+  "name": "ParkingLot",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceImpl"
+}
