@@ -1,0 +1,8 @@
+{
+  "generator-jhipster:7.9.3": {
+    "promptValues": {
+      "packageName": "co.edu.icesi.papupros",
+      "nativeLanguage": "en"
+    }
+  }
+}
